@@ -64,7 +64,8 @@ country <- c("Afghanistan", "Brazil", "China")
 `2001` <- c(3002, 453, 1233)
 table_messy <- tibble(country, `1999`, `2000`, `2001`)
 # This table is a subset of the above tidy table that needs to be gathered. Although
-# you can't get this table to look like the above, you can still get it tidy. 
+# you can't get this table to look exactly like the above (it is missing the 
+# population column), you can still get it tidy. 
 
 # The problem is that year variable values are acting as column names. 
 # Column names must be variable names, not variable values. The years
