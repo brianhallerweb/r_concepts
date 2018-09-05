@@ -12,6 +12,13 @@ install.packages("ggplot2")
 library(ggplot2)
 
 #--------------------------------
+# Running scripts in the command line
+# Rscript myscript.R
+
+# Running Scripts in the R interpreter
+# source("path to R script")
+
+#--------------------------------
 #variables (vectors)
 x <- 2L
 typeof(x) #integer
