@@ -85,3 +85,17 @@ ggplot(data = diamonds) +
 ggplot(data = diamonds) + 
   geom_bar(mapping = aes(x = cut, fill = clarity), position = "dodge")
 #Dodge is also good - it puts the bars side by side. 
+
+###############################
+
+# Adding labels with ggrepel package
+library(ggrepel)
+
+ggplot(df, aes(x = cost, y = leads)) +
+    geom_point() +
+    geom_smooth(method='lm', formula=y~x) + 
+    geom_label_repel(aes(label = name),
+                  box.padding   = 0.35, 
+                  point.padding = 0.5,
+                  segment.color = 'grey50')
+
