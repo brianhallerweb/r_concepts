@@ -3,7 +3,7 @@
 #----------------------------------------------
 #tibble
 #very similar to data frames but more strict
-#They don't do the typical data frame coercions  
+#They don't do the typical data frame coercions 
 tib <- tibble(
   x = runif(5),
   y = rnorm(5)
@@ -41,11 +41,8 @@ read_csv("a,b,c\n1,2,.", na = ".")
 #------------------------------------------------
 #Tidy data with tidyr
 
-#Tidy data simply means that columns are variables, rows are 
-#observations, and each value has its own cell. 
-#In practice, all you need to do is ensure that your data in
-#in a tibble with columns as variables. Although this problem
-#sounds trivial, it is very challenging in practice. 
+# Tidy data means that rows are observations, columns are variables, and tables
+# contain one observational unit type
 
 #Example of tidy data 
 country <- c("Afghanistan", "Afghanistan", "Brazil", "Brazil", "China", "China")
@@ -70,7 +67,7 @@ table_messy <- tibble(country, `1999`, `2000`, `2001`)
 # The problem is that year variable values are acting as column names. 
 # Column names must be variable names, not variable values. The years
 # must be "gathered" into one column with the variable name "year." 
-# Next the values that are currenlty underneath the erronous column names
+# Next the values that are currenlty underneath the erroneous column names
 # need to be given a proper column name. In this situation, that proper
 # name is cases (as in cases of infection or something). 
 

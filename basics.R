@@ -193,6 +193,10 @@ fizzBuzz <- function(n){
 }
 fizzBuzz(15)
 
+# returning values
+# functions don't have a return keyword, they have a return function
+# return()
+
 #--------------------------------
 # Matrices 
 # A representation of tabular data of the same type
@@ -291,6 +295,8 @@ DemographicData <- read.csv("DemographicData.csv") # This works if the
 DemographicData[2, "Internet.users"]
 DemographicData$Internet.users[2]
 #Both are targeting the column "Internet.users", row 2
+# as of 9/11/2018, I think this might be slightly wrong. It looks like single
+# brackets will return a list whereas double brackets or $ will return a vector. 
 
 #adding a column 
 #just use the dollar sign as if you were subsetting 

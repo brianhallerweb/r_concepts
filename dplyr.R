@@ -35,11 +35,16 @@
 # n() - The number of rows in the data.frame or group of observations that summarise() describes.
 # n_distinct(x) - The number of unique values in vector x.
 
+# Renaming and reordering columns
+# rename(oldname = newname)
+# select(newfirstcol, newsecondcol, ..., everything()) 
+# The everything() function means all the other columns. 
+
 library(nycflights13)
 
 delays <- flights %>% 
   group_by(dest) %>% 
-  summarise(
+  summarize(
     count = n(),
     dist = mean(distance, na.rm = TRUE),
     delay = mean(arr_delay, na.rm = TRUE)

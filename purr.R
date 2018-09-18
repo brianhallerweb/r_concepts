@@ -1,28 +1,50 @@
 # Purr is for functional programming in R
-# I believe most of it has to do with an alternative to loops
-# Base R provides the apply family of functions for this purpose
-# but the functions in Purr are preferrable because they are 
-# more consistent. 
 
-# Lists
-# Lists are the R data structure for hierarchical data. 
-# a named list is similar to a dictionary
-my_list <- list(a = "a", b = 1L, c = 1.5, d = TRUE)
-str(my_list)
-#> List of 4
-#>  $ a: chr "a"
-#>  $ b: int 1
-#>  $ c: num 1.5
-#>  $ d: logi TRUE
 
-# subsetting a list
-# there are 3 ways to subset a list
-# 1. Single brakets return another list (a subsetted list), not a component in a list. 
-my_list["a"]
-my_list[1]
-# 2. Double backets extracts a component out of list
-my_list[["a"]]
-my_list[[1]]
-# 3. The dollar sign is a shorthand for double brackets
-my_list$a
+# The most commonly used part of Purr are the map functions. They provide a
+# superior alternative to for loops. The apply family of funcitons in base R
+# exist for the same purpose but they are less consistent than map family from
+# Purr.  
+
+# The map functions all take a list and apply a function to each element. What
+# they return varies...
+# map() returns a list (identical to lapply())
+# map_lgl() returns a logical vector
+# map_int() returns a integer vector
+# map_dbl() returns a double vector
+# map_chr() returns a character vector
+# map_df() returns a data frame
+# walk() returns nothing
+
+# An example of splitting the the mtcars df by cylinders into a list of 3 dfs
+# and then running a linear regression on each. A list of linear regressions is
+# returned 
+models <- mtcars %>% 
+  split(.$cyl) %>% 
+  map(function(df) lm(mpg ~ wt, data = df))
+ 
+# anonymous function shorthand
+# if the function you pass as an argument to map only contains 1 or 2 arguments
+# you can omit the function() syntax and use . for 1 argument and .x and .y for
+# 2 arguments
+
+# using the anonymous function shorthand to create a list of R^2 valuesfor each
+# model
+models %>% 
+  map(summary) %>% 
+  map_dbl(~.$r.squared)
+# or even more shorthanded. 
+models %>% 
+  map(summary) %>% 
+  map_dbl("r.squared") 
+  
+# Purr also has improved functions for dealing with list hierarchies 
+# These are often used with JSON data from web apis 
+# I will come back to this later. There is good material in R for Data Science
+# lists. 
+
+
+
+
+
 
