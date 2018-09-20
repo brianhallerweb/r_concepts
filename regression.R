@@ -265,37 +265,5 @@ evals %>%
 # find correlation between the 2 continuous variables
 print(cor(evals$score, evals$age))
 # -0.107, which makes sense because older age leads to less attractiveness
-# A plot that shows the same thing. It also shows that the decline in
-# attractiveness due to age is more severe for women.
-plot <- ggplot(evals, aes(x = age, y = score, color = gender)) +
-  geom_jitter() +
-  labs(x = "Age", y = "Teaching Score", color = "Gender") +
-  geom_smooth(method = "lm", se = FALSE)
 
-# create a model 
-score_model_2 <- lm(score ~ age + gender, data = evals)
-
-print(summary(score_model_2))
-
-# The interetation is very similar to previous models. 
-# Female is the default gender so the male parameter is 0.19, meaning that
-# males are scored .19 higher than women on average. 
-# The most important thing to notice is that The regression line has the exact
-# same slope and women. That means that the model says age has the same impact on the
-# attractiveness of men and women. That is curious because in the previous plot
-# in is clear that, when men and women are considered separately, the effect of
-# age is different. 
-
-# The problem is that modeling eval score by age and gender should be done with
-# an interaction model because there is a correlation between age and gender.
-# In practice, this means adding an interaction term to the model. 
-
-# Create a model with an interaction term for age and gender
-score_model_interaction <- lm(score ~ age * gender, data = evals)
-print(summary(score_model_interaction))
-# Now the slope of the line changes for men and women
-
-# Residual analysis is the same as before. 
-
-# That concludes the first pass on regression in modern dive 
 
