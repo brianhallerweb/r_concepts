@@ -54,13 +54,14 @@ rm(message) #removes the message variable from the global environment
 4 >= 4
 T & F #false 
 T | F #true 
+# I believe | and & are vectorized and || and && are not, meaning they are
+# means to apply to single values
 mylogical = !T
 isTRUE(mylogical) #false
 
 #--------------------------------
 # loops
-# loops are not commmonly used in r. They are slow and
-# functional approaches are preferred. 
+# loops are not commmonly used in r. Functional approaches are preferred. 
 
 i = 1 
 while (i < 10){
@@ -197,6 +198,31 @@ fizzBuzz(15)
 # functions don't have a return keyword, they have a return function
 # return()
 
+# standard return rule
+# functions automatically return the last computed value
+
+# ...
+# the dot dot dot function is a special argument that captures any number of
+# arguments that aren't otherwise matched. Dot dot dot is often used with
+# wrapper fucntions in order to pass arguments on to the wrapped function. Here
+# is a good example. rule() creates an easily identifiable output that is
+# useful for debugging
+rule <- function(..., pad = "-") {
+  title <- paste0(...)
+  width <- getOption("width") - nchar(title) - 5
+  cat(title, " ", stringr::str_dup(pad, width), "\n", sep = "")
+}
+
+# lazy evaluation
+# arguments in R are always lazily evaluated. That means they are only called
+# when they are used. That is why functions will still work if you add
+# unnecessary arguments. Those arguments are never used so they are never
+# called. 
+
+# closure 
+# just like in js, functions in R are first class and have lexical scope, which
+# means they have closure  
+
 #--------------------------------
 # Matrices 
 # A representation of tabular data of the same type
@@ -330,7 +356,7 @@ factor_survey_vector
 
 #======================================
 
-#Lists 
+# Lists 
 # Lists are the R data structure for hierarchical data. 
 # A list can contain matrixes, vectors, data frames,
 # or even other lists. 

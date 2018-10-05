@@ -25,7 +25,7 @@ library(skimr) # better summary stats than summary()
 ########################################################
 # Simple linear regression with a continuous explanatory variable
 # The goal of this analysis is to understand the relationship between a
-# professor's appeerance and their student evaluations
+# professor's appearance and their student evaluations
 # We assume that better looking professors get better scores but is there
 # evidence for it?
 download.file("http://www.openintro.org/stat/data/evals.RData", destfile = "evals.RData")
@@ -36,12 +36,11 @@ evals <- evals %>%
 	as_data_frame() %>%
 	select(score, bty_avg, age)
 summary <- skim(evals)
-print(summary)
 
 # check for a correlation between beauty and teaching score
 # there is a weak positive correlation, about what you would expect. 
 c <- cor(x=evals$score, y=evals$bty_avg)
-print(c) # .187
+c # .187
 
 # plot the relationship
 plot <- ggplot(evals, aes(bty_avg, score)) + 
@@ -51,19 +50,15 @@ plot <- ggplot(evals, aes(bty_avg, score)) +
 
 # repeat all these steps to investigate the relationship between age and score
 c <- cor(x=evals$score, y=evals$age)
-print(c) # .187
+c # .187
 plot <- ggplot(evals, aes(age, score)) + 
 	geom_point(position = "jitter") +
 	geom_smooth(method="lm") +
 	labs(x="age", y="teaching score", title="age vs teaching score")
-print(plot)
 
 # create linear models
 score_by_beauty_model <- lm(score~bty_avg, evals)
-print(summary(score_by_beauty_model))
-
 score_by_age_model <- lm(score~age, evals)
-print(summary(score_by_age_model))
 
 # These linear model reports give information on coefficients (estimate, std
 # error, t, and p), residuals (summary stats for rough distribution, residual
@@ -88,9 +83,6 @@ plot <- ggplot(residual_df) +
 	geom_histogram(aes(residual))
 
 #############################################################
-print("##################################################")
-print("##################################################")
-print("##################################################")
 ##########################################################
 
 # Simple linear regression with a categorical explanatory variable
@@ -164,9 +156,6 @@ plot <- ggplot(regression_points, aes(x = residual)) +
   labs(x = "Residual")
 
 #############################################################
-print("##################################################")
-print("##################################################")
-print("##################################################")
 ##########################################################
 
 # Multiple Regression
@@ -209,7 +198,6 @@ plot <- ggplot(Credit, aes(Income, Balance)) +
 	geom_point() +
 	geom_smooth(method="lm")
 	
-print(plot)
 # I don't think ggplot has the ability to draw 3d graphs, which is what you
 # would need to visualize the "best fitting plane"
 

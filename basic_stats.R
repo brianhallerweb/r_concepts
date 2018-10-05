@@ -54,7 +54,7 @@ print(ggplot(sample)+
 # to sample from a distribution you created, use the sample() function
 
 ################################################
-# Bootstraping a sampling distribution (resampling with replacement)
+# Bootstrapping a sampling distribution (resampling with replacement)
 
 # modern dive has a sample of 40 pennies. Find the mean age (as of 2011) of ALL
 # pennies
@@ -193,43 +193,9 @@ print(proportion_ci)
 proportion_ci_plot <- bootstrap_props %>%
     visualize(bins=25, endpoints=proportion_ci, direction="between")
 print(proportion_ci_plot)
-####################################
-# bray lecture on infer
-load("gss.Rda")
-gss <- gss %>%
-	select(party, NASA)
 
-# this plot shows that republicans might favor giving NASA more money.
-ggplot(gss) +
-      geom_bar(aes(party, fill=NASA), position="fill")
-
-# But is the difference between politcal parties statistically significant?
-# This is contingency table inference with the chi square distribution 
-# R has chisq.test() but the arguments are inconsistent with other tests and
-# they moving the data out of the dataframe structure. 
-# Also, the base R statistical tests are like black boxes. It would be better
-# if the code was a little more transparent to encourage good reasoning while 
-# building tests. 
-
-# you can divide tests into classical mathemtical tests and modern
-# computational tests. They are both useful but I think infer uses entirely computational tests. 
-# those computational tests are primarily permutation and bootstrapping. I need
-# to learn about permutation tests.
-
-# 5 verbs
-# specify()
-# hypothesize()
-# generate()
-# calculate()
-# visualize()
-
-#plot <- gss %>%
-#	specify(NASA ~ party) %>%
-#	hypothesize(null = "independence") %>%
-#	generate(reps = 1000, type = "permute") %>%
-#	calculate(stat = "Chisq") %>%
-#       	visualize()
-#print(plot)
+#######################################
+# Hypothesis Testing
 
 
 

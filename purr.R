@@ -1,12 +1,34 @@
-# Purr is for functional programming in R
+# iteration
 
+# for loops in R exist but functional alternatives with the apply()
+# family or Purr is preferred
+
+###############################
+# for loops
+
+# Create an atomic double vector that holds the means for each column in mtcars
+mtcars_means <- vector("double", ncol(mtcars))
+for (i in 1:length(mtcars)){
+    mtcars_means[i] <- mean(mtcars[[i]])
+}
+
+# Create an atomic character vector that holds the types of each column in
+# flights
+library(nycflights13)
+flights_type <- vector("character", ncol(flights))
+for (i in 1:length(flights)){
+	flights_type[i] <- typeof(flights[[i]])
+}
+print(flights_type)
+#################################
+# Purr
 
 # The most commonly used part of Purr are the map functions. They provide a
-# superior alternative to for loops. The apply family of funcitons in base R
+# superior alternative to for loops. The apply family of functions in base R
 # exist for the same purpose but they are less consistent than map family from
 # Purr.  
 
-# The map functions all take a list and apply a function to each element. What
+# The map functions all take a vector (atomic or list) and applies a function to each element. What
 # they return varies...
 # map() returns a list (identical to lapply())
 # map_lgl() returns a logical vector
