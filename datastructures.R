@@ -80,7 +80,6 @@ str(parent_list[["child_list"]][[1]]) # this extracts the number 1 two levels do
 # attributes
 # All vectors can carry metadata through attributes
 # think of attributes as a named list of vectors that a vector (or any object) carries around
-# This is weird!
 
 x <- 1:10
 attr(x, "greeting")
